@@ -1,3 +1,5 @@
+(defconst *is-a-mac* (eq system-type 'darwin))
+
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 ;;;;;;;;;;;;;; FOR ELPA ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; This was installed by package-install.el.
@@ -51,7 +53,6 @@
 (line-number-mode 1)
 
 (defalias 'message-box 'message)
-(setq-default ispell-program-name "/opt/local/bin/ispell")
 
 ;; ONLY FOR LINUX-ssh: (setq mac-option-modifier 'super)
 ;; ONLY FOR LINUX-ssh:  (setq mac-command-modifier 'meta)
@@ -182,8 +183,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; FLYSPELL
 (require 'flyspell)
-;; TODO: for osx only (setq ispell-program-name "/opt/local/bin/aspell")
-(setq ispell-program-name "aspell")
+(setq ispell-program-name "aspell") ;; Linux
+(when *is-a-mac*
+  (setq ispell-program-name "/opt/local/bin/aspell")) ;; OSX
 ;; -C makes aspell accept run-together words
 ;; --run-together-limit is maximum number of words that can be strung together.
 (setq ispell-extra-args '("-C" "--sug-mode=ultra" "--run-together-limit=5"))

@@ -1,14 +1,17 @@
-;; @todo
-;; Replace the directory information with where you downloaded ycmd to
-;;(set-variable 'ycmd-server-command (list "python" (substitute-in-file-name "$HOME/dev/ycmd/ycmd/__main__.py")))
-;; Edit according to where you have your Chromium/Blink checkout
-;;(add-to-list 'ycmd-extra-conf-whitelist (substitute-in-file-name "$HOME/dev/blink/.ycm_extra_conf.py"))
-
 ;; variables that might be worth setting do different values: << START
+;; Linux
 (set-variable 'ycmd-server-command '("python" "/home/sslusny/tmp/ycmd/ycmd"))
 (set-variable 'clang-format-executable '("/usr/bin/clang-format-3.4"))
 (add-hook 'my-c++-mode-hook (setq compile-command "./akamake AKAMAKE-LINUX-BUILD-64=1 -j4"))
 ;(add-hook 'my-c++-mode-hook (setq flycheck-c/c++-gcc-executable "/home/sslusny/compiled/bin/gcc"))
+;; OSX
+(if (eq system-type 'darwin)
+    (progn
+      (set-variable 'ycmd-server-command '("python" "/Users/sslusny/Personal/ycmd/ycmd"))
+      (set-variable 'clang-format-executable '("/opt/local/bin/clang-format-mp-3.7"))
+      (add-hook 'my-c++-mode-hook (setq compile-command "make"))
+      )
+)
 ;; variables that might be worth setting do different values: << END
 
 (require 'google-c-style)
