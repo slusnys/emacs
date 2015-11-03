@@ -67,12 +67,10 @@
   (local-set-key [\C-/] 'comment-or-uncomment-line-or-region)
   (local-set-key (kbd "M-p") 'flycheck-previous-error)
   (local-set-key (kbd "M-n") 'flycheck-next-error)
-  (local-set-key (kbd "C-c f") ' highlight-symbol-at-point)
   (local-set-key [(control c) (c)] 'compile-again)
   (local-set-key "\C-ct" 'ff-get-other-file)
   (local-set-key "\C-cz" 'company-complete)
   (local-set-key "\M-." 'ycmd-goto)
-  (local-set-key "\C-ch" 'helm-multi-swoop-all)
   ;;(local-set-key (kbd "C-c z") 'ace-jump-mode)
   )					; my-c++-mode-hook
 

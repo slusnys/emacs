@@ -1,8 +1,5 @@
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 ;;;;;;;;;;;;;; FOR ELPA ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;(load-library "~/.emacs.d/lisp/package.el")
-;;(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
-
 ;;; This was installed by package-install.el.
 ;;; This provides support for the package system and
 ;;; interfacing with ELPA, the package archive.
@@ -12,8 +9,6 @@
   (package-initialize))
 
 (require 'package) ;; You might already have this line
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ENSURE FAVORITE PACKAGES ARE INSTALLED
@@ -24,6 +19,7 @@
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
 
+(setq package-enable-at-startup nil)
 ; activate all the packages (in particular autoloads)
 (package-initialize)
 
@@ -35,12 +31,6 @@
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; activate installed packages
-(package-initialize)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (savehist-mode 1)
@@ -91,15 +81,6 @@
 
 ;;(require 'helm-config)
 (setq helm-buffer-max-length 50)
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(global-set-key (kbd "C-x b") 'helm-mini)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-h SPC") 'helm-all-mark-rings)
-(global-set-key (kbd "C-x b") 'helm-buffers-list)
-
-(global-set-key (kbd "C-c i") 'iedit-mode)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; press F in dired to visit marked files
@@ -142,16 +123,21 @@
    (get-buffers-matching-mode major-mode)
    (car (occur-read-primary-args))))
 
-;; global key for `multi-occur-in-this-mode' - you should change this.
-(global-set-key (kbd "C-<f2>") 'multi-occur-in-this-mode)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-h SPC") 'helm-all-mark-rings)
+(global-set-key (kbd "C-x b") 'helm-buffers-list)
+(global-set-key (kbd "C-c i") 'iedit-mode)
+(global-set-key (kbd "C-c h") 'helm-multi-swoop-all)
+(global-set-key (kbd "C-c f") 'highlight-symbol-at-point)
 (global-set-key [?\C-x ?g] 'point-to-register)
 (global-set-key [?\C-x ?j] 'jump-to-register)
 (global-set-key [?\C-x ?c] 'copy-to-register)
 (global-set-key [?\C-x ?v] 'insert-register)
 (global-set-key [?\C-x ?l] 'align-entire)
-(global-set-key [?\C-c ?m] 'multi-occur-in-this-mode)
 (global-set-key [?\C-c ?r] 'replace-string)
 
 ;; Emacs poses the irritating "yes or no" questions which requires you to type upto 3 full characters!!. You can replace it with a shorter "y or n" prompt.
